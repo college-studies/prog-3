@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/sorteioLoteria.iml" filepath="$PROJECT_DIR$/sorteioLoteria.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sumOfNumbers.iml" filepath="$PROJECT_DIR$/sumOfNumbers.iml" />
     </modules>
   </component>
 </project>
