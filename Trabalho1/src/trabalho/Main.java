@@ -10,117 +10,94 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Locacao cliente = new Locacao();
+        Locacao contaCliente = new Locacao();
 
-        ArrayList<Cliente> clientes = new ArrayList<>();
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
-        Scanner scan = new Scanner(System.in);
+        Scanner leitor = new Scanner(System.in);
 
         {
+            Scanner input = new Scanner(new FileReader("src/trabalho/clientes.txt")).useDelimiter("\\|");
 
-            // Leitura de Dados do Cliente
-
-            Scanner entrada = new Scanner(new FileReader("src/trabalho/clientes.txt")).useDelimiter("\\|");
-
-
-            int cliente_id;
-            String nome, telefone, endereco, CPF, CNPJ, razaoSocial, tipoDoCliente;
+            String tel, end, nome, cpf, cnpj, razao, tipoCliente;
             double divida;
+            int idCliente;
 
-            while(entrada.hasNext()) {
-                cliente_id = Integer.parseInt(entrada.next().replace("\n", ""));
-                tipoDoCliente = entrada.next().replace("\n", "");
-                telefone = entrada.next().replace("\n", "");
-                endereco = entrada.next().replace("\n", "");
-                divida = Double.parseDouble(entrada.next().replace("\n", ""));
-
-                if (tipoDoCliente.equals("1")) {
-                    nome = entrada.next().replace("\n", "");
-                    CPF = entrada.next().replace("\n","");
-
-                    clientes.add(new PessoaFisica(nome, CPF,  telefone, endereco, cliente_id, divida));
-
-                }
-
-                else {
-                    razaoSocial = entrada.next().replace("\n", "");
-                    CNPJ = entrada.next().replace("\n", "");
-                    nome = entrada.next().replace("\n", "");
-
-                    clientes.add(new PessoaJuridica(razaoSocial, CNPJ, nome, telefone, endereco, cliente_id, divida));
+            while(input.hasNext()) {
+                tipoCliente = input.next().replace("\n", "");
+                idCliente = Integer.parseInt(input.next().replace("\n", ""));
+                tel = input.next().replace("\n", "");
+                end = input.next().replace("\n", "");
+                divida = Double.parseDouble(input.next().replace("\n", ""));
+                if (tipoCliente.equals("0")){
+                    nome = input.next().replace("\n", "");
+                    cpf = input.next().replace("\n", "");
+                    clientes.add(new PessoaFisica(nome, cpf, tel, end, idCliente, divida));
+                }else{
+                    nome = input.next().replace("\n", "");
+                    razao = input.next().replace("\n", "");
+                    cnpj = input.next().replace("\n", "");
+                    clientes.add(new PessoaJuridica(nome, razao, cnpj, tel, end, idCliente, divida));
                 }
             }
-            entrada.close();
+            input.close();
         }
 
+        int opcao = -1;
 
-        // ----------------------- Fluxo de Menus / Crud -----------------------
+        String menuPrincipalOutput = "============= Menu principal ===============\n\n";
+        menuPrincipalOutput += "1. Cadastrar Novo Cliente\n2. Selecionar Cliente\n3. Cadastrar Novo Carro";
+        menuPrincipalOutput += "\n4. Mostrar Dados de um Carro\n5. Relatorios\n6. Sair";
+        menuPrincipalOutput += "\n\nSua Opcao: ";
 
 
-        int escolha = -1;
+        while(opcao != 6) {
+            System.out.print(menuPrincipalOutput);
 
+            opcao = leitor.nextInt();
 
-        // Switch Inicial para verificar operaçaão que usuario deseja realizar
-        String menuPrincipal = """
-                                
-                -- Menu principal --
-                1.Cadastrar Cliente
-                2.Selecionar Cliente
-                3.Cadastrar Carro
-                4.Mostrar Informaçoões do Carro
-                5.Gerar Relatórios
-                0.Sair\040\040\040\040\040
-                                
-                Selecionar Opção:""";
+            switch(opcao) {
+                case 1:
+                {
 
-        while (escolha != 0)
-        {
-
-            System.out.println(menuPrincipal);
-            escolha = scan.nextInt();
-
-            switch (escolha) {
-
-                // Caso o usuario selecione 1 Entramos no Fluxo de Criaçaão do cadastro de um novo cliente
-                case 1 -> {
-                    Cliente novoClient = cliente.adicionarCliente(clientes.size());
-                    if (novoClient != null) {
-                        clientes.add(novoClient);
+                    Cliente c = contaCliente.adicionarCliente(clientes.size());
+                    if(c != null){
+                        clientes.add(c);
                     }
+                    break;
                 }
 
             }
 
         }
 
+
         {
-            FileWriter clientesRegistro = new FileWriter("src/trabalho/clientes.txt");
+            FileWriter arquivoClientes = new FileWriter("src/trabalho/clientes.txt");
 
-
-            for(Cliente cl: clientes) {
-                if(cl instanceof PessoaFisica pf){
-
-                    clientesRegistro.write("Pessoa Física = [\n");
-                    clientesRegistro.write("{ \n   id: " + cl.getClienteID());
-                    clientesRegistro.write(" ,\n   Nome:'" + pf.getNome());
-                    clientesRegistro.write(" ',\n   CPF:'" + pf.getCPF());
-                    clientesRegistro.write(" ',\n   Telefone: " + cl.getTelefone());
-                    clientesRegistro.write(" ,\n   Endereço:'" + cl.getEndereco());
-                    clientesRegistro.write(" ',\n   Dividas:" + cl.getDivida());
-                    clientesRegistro.write("  \n  }\n]\n");
-                } else {
-                    PessoaJuridica pj = (PessoaJuridica)cl;
-                    clientesRegistro.write("|" + cl.getClienteID());
-                    clientesRegistro.write("|" + pj.getNomeFantasia());
-                    clientesRegistro.write("|" + pj.getRazaoSocial());
-                    clientesRegistro.write("|" + pj.getCNPJ());
-                    clientesRegistro.write("|" + cl.getTelefone());
-                    clientesRegistro.write("|" + cl.getEndereco());
-                    clientesRegistro.write("|" + cl.getDivida());
+            for(Cliente cliente: clientes){
+                if (cliente instanceof PessoaFisica){
+                    PessoaFisica c = (PessoaFisica) cliente;
+                    arquivoClientes.write("|0|" + cliente.getClienteID());
+                    arquivoClientes.write("|" + cliente.getTelefone());
+                    arquivoClientes.write("|" + cliente.getEndereco());
+                    arquivoClientes.write("|" + cliente.getDivida());
+                    arquivoClientes.write("|" + c.getNome());
+                    arquivoClientes.write("|" + c.getCPF() + "\n");
+                }else{
+                    PessoaJuridica c = (PessoaJuridica) cliente;
+                    arquivoClientes.write("|1|" + cliente.getClienteID());
+                    arquivoClientes.write("|" + cliente.getTelefone());
+                    arquivoClientes.write("|" + cliente.getEndereco());
+                    arquivoClientes.write("|" + cliente.getDivida());
+                    arquivoClientes.write("|" + c.getNomeFantasia());
+                    arquivoClientes.write("|" + c.getRazaoSocial());
+                    arquivoClientes.write("|" + c.getCNPJ() + "\n");
                 }
             }
 
-            clientesRegistro.close();
+            arquivoClientes.close();
+
         }
     }
 }

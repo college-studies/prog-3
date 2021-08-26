@@ -5,13 +5,13 @@ import java.util.Scanner;
 public class Locacao {
 
     // construtor default
-    public Locacao() {}
+    public Locacao() {};
 
 
     public Cliente adicionarCliente(int client_id) {
 
-        String nome, CPF, CNPJ, telefone, endereco, razaoSocial, nomeFantasia;
         Scanner scanner = new Scanner(System.in);
+        String nome, CPF, CNPJ, telefone, endereco, razaoSocial, nomeFantasia;
 
         System.out.println(" --- Cadastrar Cliente --- ");
 

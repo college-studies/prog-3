@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8fcb898-b15a-4fd2-9b7b-ffa9e8d77c2f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/trabalho/Locacao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trabalho/clientes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Carro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Carro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Cliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Cliente.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/PessoaFisica.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/PessoaFisica.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/clientes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trabalho/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trabalho/Locacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Locacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trabalho/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trabalho/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/clientes.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +27,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1wmLj8m7BjbwaxfuEEXZUXj4hTM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -109,17 +119,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -137,6 +136,9 @@
       <workItem from="1629058955535" duration="9497000" />
       <workItem from="1629068666941" duration="1113000" />
       <workItem from="1629907055962" duration="21102000" />
+      <workItem from="1629938339814" duration="1370000" />
+      <workItem from="1629940044571" duration="2296000" />
+      <workItem from="1629946429861" duration="2350000" />
     </task>
     <servers />
   </component>

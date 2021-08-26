@@ -3,7 +3,7 @@ package trabalho;
 public abstract class Cliente {
     private String telefone;
     private String endereco;
-    private final int clienteID;
+    private int clienteID;
     private double divida;
 
     // constructor
