@@ -10,59 +10,75 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        // Nova Instancia de Locacao para criar conta Cliente
         Locacao contaCliente = new Locacao();
 
-        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        // Cria uma instancia de arraylist para os clientes
+        ArrayList<Cliente> clientes = new ArrayList<>();
 
-        Scanner leitor = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         {
-            Scanner input = new Scanner(new FileReader("src/trabalho/clientes.txt")).useDelimiter("\\|");
+            //Fluxo de Leitura do arquivo
+            Scanner entrada = new Scanner(new FileReader("src/trabalho/clientes.txt")).useDelimiter("\\|");
 
             String tel, end, nome, cpf, cnpj, razao, tipoCliente;
             double divida;
             int idCliente;
 
-            while(input.hasNext()) {
-                tipoCliente = input.next().replace("\n", "");
-                idCliente = Integer.parseInt(input.next().replace("\n", ""));
-                tel = input.next().replace("\n", "");
-                end = input.next().replace("\n", "");
-                divida = Double.parseDouble(input.next().replace("\n", ""));
-                if (tipoCliente.equals("0")){
-                    nome = input.next().replace("\n", "");
-                    cpf = input.next().replace("\n", "");
+            while(entrada.hasNext()) {
+                tipoCliente = entrada.next().replace("\n", "");
+                idCliente = Integer.parseInt(entrada.next().replace("\n", ""));
+                tel = entrada.next().replace("\n", "");
+                end = entrada.next().replace("\n", "");
+                divida = Double.parseDouble(entrada.next().replace("\n", ""));
+
+
+                if (tipoCliente.equals("1")){
+                    nome = entrada.next().replace("\n", "");
+                    cpf = entrada.next().replace("\n", "");
                     clientes.add(new PessoaFisica(nome, cpf, tel, end, idCliente, divida));
                 }else{
-                    nome = input.next().replace("\n", "");
-                    razao = input.next().replace("\n", "");
-                    cnpj = input.next().replace("\n", "");
+                    nome = entrada.next().replace("\n", "");
+                    razao = entrada.next().replace("\n", "");
+                    cnpj = entrada.next().replace("\n", "");
                     clientes.add(new PessoaJuridica(nome, razao, cnpj, tel, end, idCliente, divida));
                 }
             }
-            input.close();
+            entrada.close();
         }
 
+
+        // Loop inf menu
         int opcao = -1;
 
-        String menuPrincipalOutput = "============= Menu principal ===============\n\n";
-        menuPrincipalOutput += "1. Cadastrar Novo Cliente\n2. Selecionar Cliente\n3. Cadastrar Novo Carro";
-        menuPrincipalOutput += "\n4. Mostrar Dados de um Carro\n5. Relatorios\n6. Sair";
-        menuPrincipalOutput += "\n\nSua Opcao: ";
+        String menuPrincipal = """
+                 ---- Menu Principal ---\040
+                1. Cadastrar Cliente
+                2. Selecionar Cliente
+                3. Cadastrar Carro
+                4. Mostrar Carros
+                5. Relatórios
+                0. Sair
+                                
+                Selecione uma opcão:
+                                
+                """;
 
+        // Menu se mantem ativo em loop ate que o usuario passe o valor 0 para encerrar programa
+        while(opcao != 0) {
+            System.out.print(menuPrincipal);
 
-        while(opcao != 6) {
-            System.out.print(menuPrincipalOutput);
-
-            opcao = leitor.nextInt();
+            opcao = scanner.nextInt();
 
             switch(opcao) {
                 case 1:
                 {
 
-                    Cliente c = contaCliente.adicionarCliente(clientes.size());
-                    if(c != null){
-                        clientes.add(c);
+                    // Chamada do metodo para criar um novo cliente
+                    Cliente cliente = contaCliente.adicionarCliente(clientes.size());
+                    if(cliente != null){
+                        clientes.add(cliente);
                     }
                     break;
                 }
@@ -72,30 +88,41 @@ public class Main {
         }
 
 
+
+
+
         {
+            // Escrita no arquivo txt de clientes
             FileWriter arquivoClientes = new FileWriter("src/trabalho/clientes.txt");
 
+
             for(Cliente cliente: clientes){
-                if (cliente instanceof PessoaFisica){
-                    PessoaFisica c = (PessoaFisica) cliente;
-                    arquivoClientes.write("|0|" + cliente.getClienteID());
-                    arquivoClientes.write("|" + cliente.getTelefone());
-                    arquivoClientes.write("|" + cliente.getEndereco());
-                    arquivoClientes.write("|" + cliente.getDivida());
-                    arquivoClientes.write("|" + c.getNome());
-                    arquivoClientes.write("|" + c.getCPF() + "\n");
-                }else{
-                    PessoaJuridica c = (PessoaJuridica) cliente;
+
+                // Escrita para Pessoa Fisica
+                if (cliente instanceof PessoaFisica pf){
                     arquivoClientes.write("|1|" + cliente.getClienteID());
                     arquivoClientes.write("|" + cliente.getTelefone());
                     arquivoClientes.write("|" + cliente.getEndereco());
                     arquivoClientes.write("|" + cliente.getDivida());
-                    arquivoClientes.write("|" + c.getNomeFantasia());
-                    arquivoClientes.write("|" + c.getRazaoSocial());
-                    arquivoClientes.write("|" + c.getCNPJ() + "\n");
+                    arquivoClientes.write("|" + pf.getNome());
+                    arquivoClientes.write("|" + pf.getCPF() + "\n");
+
+                }else{
+
+                    // Escrita para Pessoa Juridica
+                    PessoaJuridica pj = (PessoaJuridica) cliente;
+                    arquivoClientes.write("|2|" + cliente.getClienteID());
+                    arquivoClientes.write("|" + cliente.getTelefone());
+                    arquivoClientes.write("|" + cliente.getEndereco());
+                    arquivoClientes.write("|" + cliente.getDivida());
+                    arquivoClientes.write("|" + pj.getNomeFantasia());
+                    arquivoClientes.write("|" + pj.getRazaoSocial());
+                    arquivoClientes.write("|" + pj.getCNPJ()  + "\n");
+
                 }
             }
 
+            // Finaliza escrita e salva alteracoes apos fim da execucao do programa
             arquivoClientes.close();
 
         }

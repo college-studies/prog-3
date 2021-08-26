@@ -8,6 +8,8 @@ public abstract class Carro implements ValorDiaria {
     }
 
 
+
+    // Definição de Atributos
     private String placa;
     private String modelo;
     private String descricao;

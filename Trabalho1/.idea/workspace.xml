@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8fcb898-b15a-4fd2-9b7b-ffa9e8d77c2f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Cliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Cliente.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/clientes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trabalho/Aluguel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Aluguel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trabalho/Carro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Carro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trabalho/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trabalho/Locacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Locacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trabalho/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trabalho/PessoaFisica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/PessoaFisica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trabalho/PessoaJuridica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/PessoaJuridica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trabalho/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/clientes.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,6 +103,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -115,6 +119,17 @@
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -139,6 +154,8 @@
       <workItem from="1629938339814" duration="1370000" />
       <workItem from="1629940044571" duration="2296000" />
       <workItem from="1629946429861" duration="2350000" />
+      <workItem from="1629949475627" duration="636000" />
+      <workItem from="1629973830217" duration="4921000" />
     </task>
     <servers />
   </component>

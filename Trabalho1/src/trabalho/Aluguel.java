@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class Aluguel
 {
+
+    // Definição de Atributos
     private LocalDate inicioLocacao, fimLocacao;
     private int clienteID;
     private int carroID;

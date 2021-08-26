@@ -1,6 +1,9 @@
 package trabalho;
 
+// Classe Filha
 public class PessoaFisica extends Cliente{
+
+    // Definição de Atributos
     private String nome;
     private String CPF;
 

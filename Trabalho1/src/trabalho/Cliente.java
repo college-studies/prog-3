@@ -1,6 +1,9 @@
 package trabalho;
 
+// Classe Pai
 public abstract class Cliente {
+
+    // Definição de Atributos
     private String telefone;
     private String endereco;
     private int clienteID;
