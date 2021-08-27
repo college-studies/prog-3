@@ -16,10 +16,13 @@ public class Main {
         // Cria uma instancia de arraylist para os clientes
         ArrayList<Cliente> clientes = new ArrayList<>();
 
+        // Cria uma instancia de arraylist para os clientes
+        ArrayList<Carro> carros = new ArrayList<>();
+
         Scanner scanner = new Scanner(System.in);
 
         {
-            //Fluxo de Leitura do arquivo
+            //Fluxo de Leitura do arquivo Clientes
             Scanner entrada = new Scanner(new FileReader("src/trabalho/clientes.txt")).useDelimiter("\\|");
 
             String tel, end, nome, cpf, cnpj, razao, tipoCliente;
@@ -46,6 +49,30 @@ public class Main {
                 }
             }
             entrada.close();
+
+
+            //Fluxo de Leitura do arquivo Carros
+            entrada = new Scanner(new FileReader("src/trabalho/carros.txt")).useDelimiter("\\|");
+
+            String placa, modelo, descricao, observacoes;
+            int ano, carro_id;
+            double quilometragem, taxaDiaria, taxaPorKm;
+            boolean situacao;
+
+            while(entrada.hasNext()) {
+                carro_id = Integer.parseInt(entrada.next().replace("\n", ""));
+                situacao = entrada.next().replace("\n", "").equals("1");
+                quilometragem = Double.parseDouble(entrada.next().replace("\n", ""));
+                taxaPorKm = Double.parseDouble(entrada.next().replace("\n", ""));
+                taxaDiaria = Double.parseDouble(entrada.next().replace("\n", ""));
+                placa = entrada.next().replace("\n", "");
+                modelo = entrada.next().replace("\n", "");
+                descricao = entrada.next().replace("\n", "");
+                observacoes = entrada.next().replace("\n", "");
+                ano = Integer.parseInt(entrada.next().replace("\n", ""));
+            }
+            entrada.close();
+
         }
 
 
@@ -83,6 +110,17 @@ public class Main {
                     break;
                 }
 
+                case 2: {
+                    System.out.println("Ainda nao implementado");
+                }
+
+                case 3: {
+                    Carro carro = contaCliente.cadastrarCarro(carros.size());
+                    if( carro != null) {
+                        carros.add(carro);
+                    }
+                }
+
             }
 
         }
@@ -94,6 +132,9 @@ public class Main {
         {
             // Escrita no arquivo txt de clientes
             FileWriter arquivoClientes = new FileWriter("src/trabalho/clientes.txt");
+
+            // Escrita no arquivo txt de clientes
+            FileWriter arquivoCarros = new FileWriter("src/trabalho/carros.txt");
 
 
             for(Cliente cliente: clientes){
@@ -122,9 +163,24 @@ public class Main {
                 }
             }
 
+            for (Carro carro: carros){
+                arquivoCarros.write("|" + carro.getID());
+                arquivoCarros.write("|" + (carro.getSituacao()?1:0));
+                arquivoCarros.write("|" + carro.getQuilometragem());
+                arquivoCarros.write("|" + carro.getTaxaPorKm());
+                arquivoCarros.write("|" + carro.getTaxaDiaria());
+                arquivoCarros.write("|" + carro.getPlaca());
+                arquivoCarros.write("|" + carro.getModelo());
+                arquivoCarros.write("|" + carro.getDescricao());
+                arquivoCarros.write("|" + carro.getObservacoes());
+                arquivoCarros.write("|" + carro.getAno() + "\n");
+            }
+
             // Finaliza escrita e salva alteracoes apos fim da execucao do programa
             arquivoClientes.close();
 
+            // Finaliza escrita e salva alteracoes apos fim da execucao do programa
+            arquivoCarros.close();
         }
     }
 }

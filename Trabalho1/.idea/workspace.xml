@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8fcb898-b15a-4fd2-9b7b-ffa9e8d77c2f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/trabalho/carros.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Aluguel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Aluguel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/clientes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/trabalho/Carro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Carro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/trabalho/Locacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Locacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trabalho/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trabalho/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/clientes.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,6 +117,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -141,7 +151,7 @@
       <workItem from="1629949475627" duration="636000" />
       <workItem from="1629973830217" duration="4921000" />
       <workItem from="1629985409621" duration="293000" />
-      <workItem from="1630069794822" duration="579000" />
+      <workItem from="1630069794822" duration="1743000" />
     </task>
     <servers />
   </component>
