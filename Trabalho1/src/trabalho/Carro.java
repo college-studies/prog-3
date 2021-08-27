@@ -1,6 +1,6 @@
 package trabalho;
 
-public abstract class Carro implements ValorDiaria {
+public class Carro implements ValorDiaria {
 
     @Override
     public void calculaValorDiaria() {
@@ -15,7 +15,7 @@ public abstract class Carro implements ValorDiaria {
     private String descricao;
     private String observacoes;
 
-    private final int carroID;
+    private int carroID;
     private int ano;
 
     private boolean situacao;

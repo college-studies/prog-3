@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Locacao {
 
     // construtor default
-    public Locacao() {};
+    public Locacao() {}
 
 
     // Criar um Novo Cliente
@@ -47,5 +47,28 @@ public class Locacao {
 
             return new PessoaJuridica(nomeFantasia, razaoSocial, CNPJ, telefone, endereco, client_id, 0);
         }
+    }
+
+    public Carro cadastrarCarro(int carro_id) {
+        String placa, modelo, descricao, observacoes;
+        int ano;
+        double quilometragem, taxaDiaria, taxaPorKm;
+        boolean situacao = true;
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(" --- Cadastrar Carro --- ");
+
+        System.out.println("Placa: "); placa = scanner.nextLine();
+        System.out.println("Modelo: "); modelo = scanner.nextLine();
+        System.out.println("Descricao: "); descricao = scanner.nextLine();
+        System.out.println("Ano: "); ano = scanner.nextInt();
+        System.out.println("Quilometragem: "); quilometragem = scanner.nextDouble();
+        System.out.println("Taxa por Km: "); taxaPorKm = scanner.nextDouble();
+        System.out.println("Taxa Diaria: "); taxaDiaria = scanner.nextDouble();
+        System.out.println("Observação: "); observacoes = scanner.nextLine();
+
+        return new Carro(placa, modelo, descricao, observacoes, carro_id, ano, situacao, quilometragem, taxaDiaria, taxaPorKm);
+
     }
 }
