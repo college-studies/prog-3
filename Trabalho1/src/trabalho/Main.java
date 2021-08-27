@@ -51,6 +51,9 @@ public class Main {
             entrada.close();
 
 
+            // ---------------------------------------------------------------------------------------------------------//
+
+
             //Fluxo de Leitura do arquivo Carros
             entrada = new Scanner(new FileReader("src/trabalho/carros.txt")).useDelimiter("\\|");
 
@@ -73,6 +76,8 @@ public class Main {
             }
             entrada.close();
 
+            // ---------------------------------------------------------------------------------------------------------//
+
         }
 
 
@@ -87,6 +92,17 @@ public class Main {
                 4. Mostrar Carros
                 5. Relatórios
                 0. Sair
+                                
+                Selecione uma opcão:
+                                
+                """;
+
+        String menuCliente = """
+                 ---- Menu Cliente ---\040
+                1. Alugar Carro\040
+                2. Quitar Dividas
+                3. Devolver um Carro
+                0. Voltar
                                 
                 Selecione uma opcão:
                                 
@@ -111,7 +127,80 @@ public class Main {
                 }
 
                 case 2: {
-                    System.out.println("Ainda nao implementado");
+
+                    String clienteX = "";
+                    System.out.println("1.Pessoa Física\n2.Pessoa Jurídica\n\nSeleciona uma opçaão:");
+                    int x = scanner.nextInt();
+
+                    System.out.println(" ---- Clientes Cadastrados: ----");
+
+                    if (x == 1) {
+                        PessoaFisica pf;
+                        for(Cliente c: clientes) {
+                            if (c instanceof PessoaFisica) {
+                                pf = (PessoaFisica) c;
+                                System.out.println("ID: " + pf.getClienteID() + " Nome: " + pf.getNome() + " - CPF: " + pf.getCPF() + " - Telefone: " + pf.getTelefone() + " - Endereco: " + pf.getEndereco() + " - Divida: " + pf.getDivida()) ;
+                            }
+                        }
+                    } else if (x == 2) {
+                        PessoaJuridica pj;
+                        for (Cliente c: clientes) {
+                            if (c instanceof PessoaJuridica) {
+                                pj = (PessoaJuridica) c;
+                                System.out.println("ID: " + pj.getClienteID() + " - Nome Fantasia: " + pj.getNomeFantasia()+ " - CNPJ: " + pj.getCNPJ() + " - Telefone: " + pj.getTelefone() + " - Endereco" + pj.getEndereco() + " - Divida: " + pj.getDivida());
+                            }
+                        }
+                    }
+
+                    int y = -1;
+
+                    while(y < 0 || y >= clientes.size()) {
+                        System.out.println("\nDigite um ID para escolher o cliente:");
+                        y = scanner.nextInt();
+                    }
+                    Cliente cliente;
+
+                    cliente = clientes.get(y);
+                    if (cliente instanceof PessoaFisica pf) {
+                        clienteX = pf.getNome();
+                    } else {
+                        PessoaJuridica pj = (PessoaJuridica) cliente;
+                        clienteX = pj.getNomeFantasia();
+                    }
+
+
+                    opcao = -1;
+                    while (opcao != 0) {
+                        System.out.println(" -- Cliente " + clienteX + " selecionado\n");
+                        System.out.println(menuCliente);
+                        opcao = scanner.nextInt();
+
+                        switch (opcao) {
+                            case 1: {
+                                ArrayList<Carro> disponiveis = new ArrayList<>();
+
+                                for(Carro carro: carros) {
+                                    if (carro.getSituacao()) {
+                                        disponiveis.add(carro);
+                                    }
+                                }
+
+                                // Implementar aluguel
+                            }
+
+                            case 2: {
+                                if (cliente.getDivida() > 0) {
+                                    System.out.println("Criar funcao de quitar divida");
+                                } else {
+                                    System.out.println("Nenhuma divida encontrada");
+                                }
+
+                                scanner.nextLine();
+                                scanner.nextLine();
+                            }
+                        }
+                    }
+
                 }
 
                 case 3: {

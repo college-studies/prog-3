@@ -3,6 +3,6 @@
 |1|2|312321321|sdafasdfdas|0.0|Ricardo|312312312
 |1|3|12312312|fasdfas|0.0|Vitor|12312321
 |1|4|312312312|dsfasfads|0.0|Fillipe|123123123
-|2|5|12312312|Rua Nubank|0.0|nubank ltda|12312312123312|Nubank
-|2|6|312312312|Rua inter|0.0|2312312|Banco inter|inter ltda
+|2|5|12312312|Rua Nubank|0.0|Nubank|nubank ltda|12312312123312
+|2|6|312312312|Rua inter|0.0|inter ltda|2312312|Banco inter
 |1|7|23423423423|Rua do Samuel|0.0|Samuel|9238478237123
