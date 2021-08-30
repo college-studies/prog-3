@@ -2,6 +2,7 @@ package trabalho;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 // Tarefas disponiveis no sistema de locação
@@ -82,15 +83,15 @@ public class Locacao {
         if (cliente.getDivida() > 0) {
             System.out.println("ERRO - O Cliente tem Dividas a serem pagas");
             scanner.nextLine();
+            scanner.nextLine();
 
             return null;
         }
 
         System.out.println(" -- Carros Disponiveis --");
         int i = 0;
-
-        for(Carro carro: disponiveis) {
-            System.out.println(i++ + ". " + carro.getModelo() + " "+ carro.getDescricao() + " "+ carro.getAno());
+        for (Carro carro: disponiveis){
+            System.out.println(i++ + ". " + carro.getModelo());
         }
         System.out.println("\nInsira o ID do carro a ser alugado: ");
         Carro carro = disponiveis.get(scanner.nextInt());
@@ -105,5 +106,31 @@ public class Locacao {
         return aluguel;
     }
 
+    public void pagarDividas(Cliente cliente) {
+        Scanner scanner = new Scanner(System.in);
+
+        String entrada, saida = "";
+
+        System.out.println("Divida de R$ " + cliente.getDivida());
+
+        entrada = scanner.nextLine();
+
+        if (entrada.toLowerCase().equals("s")) {
+            cliente.setDivida(0);
+
+            System.out.println("\n -- Divida Quitada -- ");
+
+            if (cliente instanceof PessoaFisica pf) {
+                saida += pf.getNome() +" "+ pf.getCPF() + " Divida quitada - Valor R$" + pf.getDivida();
+
+            } else {
+                PessoaJuridica pj = (PessoaJuridica) cliente;
+                saida += pj.getNomeFantasia() +" "+ pj.getCNPJ() + " Divida quitada - Valor R$" + pj.getDivida();
+            }
+
+            System.out.println(saida);
+            System.out.println(LocalDate.now());
+        }
+    }
 
 }

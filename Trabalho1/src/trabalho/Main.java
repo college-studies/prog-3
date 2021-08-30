@@ -77,6 +77,7 @@ public class Main {
                 descricao = entrada.next().replace("\n", "");
                 observacoes = entrada.next().replace("\n", "");
                 ano = Integer.parseInt(entrada.next().replace("\n", ""));
+                carros.add(new Carro(placa, modelo, descricao, observacoes, carro_id, ano, situacao, quilometragem, taxaDiaria, taxaPorKm));
             }
             entrada.close();
 
@@ -111,7 +112,6 @@ public class Main {
                 }
                 alugueis.add(new Aluguel(dIni, dFi, idCliente, carro_id,  aluguel_id, valor, tipoLocacao));
             }
-
         }
 
 
@@ -220,17 +220,19 @@ public class Main {
                                 }
 
                                 alugueis.add(contaCliente.cadastrarAluguel(alugueis.size(), cliente, disponiveis));
+                                break;
                             }
 
                             case 2: {
                                 if (cliente.getDivida() > 0) {
-                                    System.out.println("Criar funcao de quitar divida");
+                                    contaCliente.pagarDividas(cliente);
                                 } else {
                                     System.out.println("Nenhuma divida encontrada");
                                 }
 
                                 scanner.nextLine();
                                 scanner.nextLine();
+                                break;
                             }
 
                             case 3: {
@@ -244,6 +246,7 @@ public class Main {
                                             flag = true;
                                             aluguel = al;
                                             carro = carros.get(al.getCarroID());
+                                            break;
 
                                         }
                                     }
@@ -261,6 +264,7 @@ public class Main {
                                 }
 
                                 scanner.nextLine();
+                                break;
                             }
 
                             case 4: {
@@ -268,6 +272,7 @@ public class Main {
                             }
                         }
                     }
+                    break;
 
                 }
 
@@ -368,7 +373,7 @@ public class Main {
             arquivoCarros.close();
 
             // Finaliza escrita e salva alteracoes apos fim da execucao do programa
-            arquivoCarros.close();
+            arquivoClientes.close();
         }
     }
 }
