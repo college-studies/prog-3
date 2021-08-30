@@ -19,8 +19,8 @@ public class Locacao {
         String nome, CPF, CNPJ, telefone, endereco, razaoSocial, nomeFantasia;
 
         // Menu Criação de Cliente
-        System.out.println(" --- Cadastrar Cliente --- ");
-        System.out.println("""
+        System.out.println("\n--- Cadastrar Cliente --- ");
+        System.out.print("""
                 1. Cadastro Pessoa Física
                 2. Cadastro Pessoa Jurídica
 
@@ -31,10 +31,10 @@ public class Locacao {
         if ((scanner.nextInt() == 1)) {
 
             scanner.nextLine();
-            System.out.println("Nome: "); nome = scanner.nextLine();
-            System.out.println("CPF: "); CPF = scanner.nextLine();
-            System.out.println("Telefone: "); telefone = scanner.nextLine();
-            System.out.println("Endereço: "); endereco = scanner.nextLine();
+            System.out.print("Nome: "); nome = scanner.nextLine();
+            System.out.print("CPF: "); CPF = scanner.nextLine();
+            System.out.print("Telefone: "); telefone = scanner.nextLine();
+            System.out.print("Endereço: "); endereco = scanner.nextLine();
 
 
             return new PessoaFisica(nome, CPF, telefone, endereco, client_id, 0);
@@ -42,11 +42,11 @@ public class Locacao {
         } else {
 
             scanner.nextLine();
-            System.out.println("Nome Fantasia: "); nomeFantasia = scanner.nextLine();
-            System.out.println("Razão Social: "); razaoSocial = scanner.nextLine();
-            System.out.println("CNPJ: "); CNPJ = scanner.nextLine();
-            System.out.println("Telefone: "); telefone = scanner.nextLine();
-            System.out.println("Endereço: "); endereco = scanner.nextLine();
+            System.out.print("Nome Fantasia: "); nomeFantasia = scanner.nextLine();
+            System.out.print("Razão Social: "); razaoSocial = scanner.nextLine();
+            System.out.print("CNPJ: "); CNPJ = scanner.nextLine();
+            System.out.print("Telefone: "); telefone = scanner.nextLine();
+            System.out.print("Endereço: "); endereco = scanner.nextLine();
 
             return new PessoaJuridica(nomeFantasia, razaoSocial, CNPJ, telefone, endereco, client_id, 0);
         }
@@ -61,16 +61,17 @@ public class Locacao {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(" --- Cadastrar Carro --- ");
+        System.out.println("\n--- Cadastrar Carro --- ");
 
-        System.out.println("Placa: "); placa = scanner.nextLine();
-        System.out.println("Modelo: "); modelo = scanner.nextLine();
-        System.out.println("Descricao: "); descricao = scanner.nextLine();
-        System.out.println("Ano: "); ano = scanner.nextInt();
-        System.out.println("Quilometragem: "); quilometragem = scanner.nextDouble();
-        System.out.println("Taxa por Km: "); taxaPorKm = scanner.nextDouble();
-        System.out.println("Taxa Diaria: "); taxaDiaria = scanner.nextDouble();
-        System.out.println("Observação: "); observacoes = scanner.nextLine();
+        System.out.print("Placa: "); placa = scanner.nextLine();
+        System.out.print("Modelo: "); modelo = scanner.nextLine();
+        System.out.print("Descricao: "); descricao = scanner.nextLine();
+        System.out.print("Ano: "); ano = scanner.nextInt();
+        System.out.print("Quilometragem: "); quilometragem = scanner.nextDouble();
+        System.out.print("Taxa por Km: "); taxaPorKm = scanner.nextDouble();
+        System.out.print("Taxa Diaria: "); taxaDiaria = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.print("Observação: "); observacoes = scanner.nextLine();
 
         return new Carro(placa, modelo, descricao, observacoes, carro_id, ano, situacao, quilometragem, taxaDiaria, taxaPorKm);
     }
@@ -92,19 +93,19 @@ public class Locacao {
 
 
         // Caso o cliente nao tenha dividas, sistema percorre pelos carros disponiveis e mostra as opcoes de locacao
-        System.out.println(" -- Carros Disponiveis --");
+        System.out.println("\n-- Carros Disponiveis --");
         int i = 0;
         for (Carro carro: disponiveis){
-            System.out.println(i++ + ". " + carro.getModelo());
+            System.out.println(i++ + ". " + carro.getModelo() + " " + carro.getAno());
         }
 
-        System.out.println("\nInsira o ID do carro a ser alugado: ");
+        System.out.print("\nInsira o ID do carro a ser alugado: ");
         Carro carro = disponiveis.get(scanner.nextInt());
 
         // Determina qual o tipo de locacao que o cliente deseja
-        System.out.println("Tipo de locação:\n0. Por Km Rodado (R$" + carro.getTaxaPorKm() + ")\n1. Por Dia (R$ " + carro.getTaxaDiaria() + ")");
+        System.out.print("Tipo de locação:\n0. Por Km Rodado (R$" + carro.getTaxaPorKm() + ")\n1. Por Dia (R$ " + carro.getTaxaDiaria() + ")\n");
 
-        System.out.println("Selecione uma opcao: ");
+        System.out.print("Selecione uma opcao: ");
 
         // Passa os parametros para realizacao do aluguel
         Aluguel aluguel = new Aluguel(diaInicio, null, cliente.getClienteID(), carro.getID(), 0, scanner.nextInt(), aluguel_id);
@@ -218,7 +219,7 @@ public class Locacao {
             saida += "\nRazao Social: " + cliente.getRazaoSocial() + "\nTelefone: " + cliente.getTelefone();
             saida += "\nEndereco: " + cliente.getEndereco() + "\nDivida: " + cliente.getDivida();
 
-        //Dados dos carros
+            //Dados dos carros
         }else if (out instanceof Carro carro){
             saida += "\nModelo: " + carro.getModelo() + "\nDescricao: " + carro.getDescricao();
             saida += "\nAno: " + carro.getAno() + "\nPlaca: " + carro.getPlaca() + "\nKilometragem: " + carro.getQuilometragem();

@@ -99,7 +99,7 @@ public class Main {
             LocalDate dIni, dFi;
 
             while(entrada.hasNext()){
-                ativo = entrada.next().replace("\n", "").equals("1");
+                ativo = entrada.next().replace("\n", "").equals("2");
                 idCliente = Integer.parseInt(entrada.next().replace("\n", ""));
                 carro_id = Integer.parseInt(entrada.next().replace("\n", ""));
                 aluguel_id = Integer.parseInt(entrada.next().replace("\n", ""));
@@ -128,6 +128,7 @@ public class Main {
         // ---------------------------------------- MENUS DO SISTEMA -------------------------------------------- //
 
         String menuPrincipal = """
+                 
                  ---- Menu Principal ---\040
                 1. Cadastrar Cliente
                 2. Selecionar Cliente
@@ -136,22 +137,21 @@ public class Main {
                 5. Relatórios
                 0. Sair
                                 
-                Selecione uma opcão:
-                                
-                """;
+                Selecione uma opcão:\040""";
 
         String menuCliente = """
+                 
                  ---- Menu Cliente ---\040
                 1. Alugar Carro\040
                 2. Quitar Dividas
                 3. Devolver um Carro
+                4. Ver dados do cliente\040
                 0. Voltar
                                 
-                Selecione uma opcão:
-                                
-                """;
+                Selecione uma opcão:\040""";
 
         String menuRelatorios = """
+                 
                  ---- Menu Relatorios ---\040
                 1. Clientes\040
                 2. Veiculos
@@ -160,9 +160,7 @@ public class Main {
                 5. Alugados por Periodo
                 0. Sair
                                 
-                Selecione uma opcão:
-                                
-                """;
+                Selecione uma opcão:\040""";
 
 
         // Menu se mantem ativo em loop ate que o usuario passe o valor 0 para encerrar programa
@@ -183,17 +181,18 @@ public class Main {
                 case 2 -> {
 
                     String clienteX = "";
-                    System.out.println("1.Pessoa Física\n2.Pessoa Jurídica\n\nSeleciona uma opçaão:");
+                    System.out.println("\n1.Pessoa Física\n2.Pessoa Jurídica\n");
+                    System.out.print("Selecione uma opçaão: ");
                     int x = scanner.nextInt();
 
-                    System.out.println(" ---- Clientes Cadastrados: ----");
+                    System.out.println("\n---- Clientes Cadastrados: ----");
 
                     if (x == 1) {
                         PessoaFisica pf;
                         for (Cliente c : clientes) {
                             if (c instanceof PessoaFisica) {
                                 pf = (PessoaFisica) c;
-                                System.out.println("ID: " + pf.getClienteID() + " Nome: " + pf.getNome() + " - CPF: " + pf.getCPF() + " - Telefone: " + pf.getTelefone() + " - Endereco: " + pf.getEndereco() + " - Divida: " + pf.getDivida());
+                                System.out.println("ID: [" + pf.getClienteID() + "] Nome: [" + pf.getNome() + "] CPF: [" + pf.getCPF() + "] Telefone: [" + pf.getTelefone() + "] Endereco: [" + pf.getEndereco() + "] Divida: [R$" + pf.getDivida() + "]");
                             }
                         }
                     } else if (x == 2) {
@@ -201,7 +200,7 @@ public class Main {
                         for (Cliente c : clientes) {
                             if (c instanceof PessoaJuridica) {
                                 pj = (PessoaJuridica) c;
-                                System.out.println("ID: " + pj.getClienteID() + " - Nome Fantasia: " + pj.getNomeFantasia() + " - CNPJ: " + pj.getCNPJ() + " - Telefone: " + pj.getTelefone() + " - Endereco" + pj.getEndereco() + " - Divida: " + pj.getDivida());
+                                System.out.println("ID: [" + pj.getClienteID() + "] Nome Fantasia: [" + pj.getNomeFantasia() + "] CNPJ: [" + pj.getCNPJ() + "] Telefone: [" + pj.getTelefone() + "] Endereco: [" + pj.getEndereco() + "] Divida: [R$" + pj.getDivida() + "]");
                             }
                         }
                     }
@@ -209,7 +208,7 @@ public class Main {
                     int y = -1;
 
                     while (y < 0 || y >= clientes.size()) {
-                        System.out.println("\nDigite um ID para escolher o cliente:");
+                        System.out.print("\nDigite um ID para escolher o cliente: ");
                         y = scanner.nextInt();
                     }
                     Cliente cliente;
@@ -225,8 +224,8 @@ public class Main {
 
                     opcao = -1;
                     while (opcao != 0) {
-                        System.out.println(" -- Cliente " + clienteX + " selecionado\n");
-                        System.out.println(menuCliente);
+                        System.out.println("\n-- Cliente " + clienteX + " selecionado");
+                        System.out.print(menuCliente);
                         opcao = scanner.nextInt();
 
                         switch (opcao) {
@@ -276,7 +275,7 @@ public class Main {
 
                                     contaCliente.devolucaoAluguel(cliente, carro, aluguel, currentKm);
                                 } else {
-                                    System.out.println("Cliente naão tem nenhum carro alugado");
+                                    System.out.println("\nCliente naão tem nenhum carro alugado");
                                 }
 
                                 scanner.nextLine();
@@ -300,10 +299,10 @@ public class Main {
                     int vl;
 
                     for (Carro carro : carros) {
-                        System.out.println(i++ + ". " + carro.getModelo() + " " + carro.getDescricao());
+                        System.out.print(i++ + ". " + carro.getModelo() + "\n");
                     }
 
-                    System.out.print("\n\nSelecione uma opcao: ");
+                    System.out.print("\n\nSelecione um carro para ver com mais detalhes: ");
 
                     vl = scanner.nextInt();
 
@@ -320,34 +319,36 @@ public class Main {
                     opcao = -1;
                     while (opcao != 0) {
 
-                        System.out.println(menuRelatorios);
+                        System.out.print(menuRelatorios);
                         opcao = scanner.nextInt();
                         switch (opcao) {
                             case 1 -> {
-
+                                System.out.println("<----------------------------------Clientes----------------------------->");
                                 for (Cliente c : clientes) {
                                     contaCliente.mostrarDados(c);
                                 }
                                 scanner.nextLine();
+                                System.out.println("<---------------------------------------------------------------------->");
+
                             }
                             case 2 -> {
-
+                                System.out.println("<---------------------------------Carros------------------------------------->");
                                 for (Carro c : carros) {
                                     contaCliente.mostrarDados(c);
                                 }
                                 scanner.nextLine();
-
+                                System.out.println("<---------------------------------------------------------------------->");
                             }
                             case 3 -> {
-
+                                System.out.println("<---------------------------------Alugueis------------------------------------->");
                                 for (Aluguel a : alugueis) {
                                     contaCliente.mostrarDados(a);
                                 }
                                 scanner.nextLine();
-
+                                System.out.println("<---------------------------------------------------------------------->");
                             }
                             case 4 -> {
-
+                                System.out.println("<---------------------------------Devedores------------------------------------->");
                                 int cont = 0;
                                 for (Cliente c : clientes) {
                                     if (c.getDivida() > 0) {
@@ -359,8 +360,20 @@ public class Main {
                                     System.out.println("Todos os clientes efetuaram pagamento");
                                 }
                                 scanner.nextLine();
-
+                                System.out.println("<---------------------------------------------------------------------->");
                             }
+
+                            case 666 -> {
+                                System.out.print("Indice: ");
+                                int x = scanner.nextInt();
+                                if (x >= 0 && x < alugueis.size()){
+                                    contaCliente.mostrarDados(alugueis.get(x));
+                                }else{
+                                    System.out.println("Indice Invalido");
+                                }
+                                scanner.nextLine();scanner.nextLine();
+                            }
+
                             case 5 -> {
 
                                 int dI, mI, aI, dF, mF, aF, cont = 0;
@@ -380,7 +393,7 @@ public class Main {
                                 LocalDate dataInicial = LocalDate.of(aI, mI, dI);
                                 LocalDate dataFinal = LocalDate.of(aF, mF, dF);
 
-
+                                System.out.println("<---------------------------------Alugueis por Periodo------------------------------------->");
                                 for (Aluguel a : alugueis) {
                                     if (a.calculaTempoAluguel(dataInicial, dataFinal)) {
                                         cont++;
@@ -391,6 +404,7 @@ public class Main {
                                     System.out.println("\nNenhum aluguel no periodo");
                                 }
                                 scanner.nextLine();
+                                System.out.println("<---------------------------------------------------------------------->");
 
                             }
                         }
@@ -455,7 +469,7 @@ public class Main {
 
             for (Aluguel aluguel: alugueis){
                 if (aluguel.getFimLocacao() == null){
-                    arquivoAlugueis.write("|1|" + aluguel.getClienteID());
+                    arquivoAlugueis.write("|2|" + aluguel.getClienteID());
                     arquivoAlugueis.write("|" + aluguel.getCarroID());
                     arquivoAlugueis.write("|" + aluguel.getAluguelID());
                     arquivoAlugueis.write("|" + aluguel.getValorAluguel());
@@ -464,7 +478,7 @@ public class Main {
                     arquivoAlugueis.write("|" + aluguel.getFimLocacao().getMonthValue());
                     arquivoAlugueis.write("|" + aluguel.getInicioLocacao().getYear() + "\n");
                 }else{
-                    arquivoAlugueis.write("|0|" + aluguel.getClienteID());
+                    arquivoAlugueis.write("|1|" + aluguel.getClienteID());
                     arquivoAlugueis.write("|" + aluguel.getCarroID());
                     arquivoAlugueis.write("|" + aluguel.getAluguelID());
                     arquivoAlugueis.write("|" + aluguel.getValorAluguel());

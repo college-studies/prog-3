@@ -51,12 +51,12 @@ public class Aluguel
     // Auxiliar
     public boolean calculaTempoAluguel(LocalDate inicio, LocalDate fim)
     {
-        boolean dia_inicio, dia_devolucao;
-
         LocalDate inicio_locacao = this.inicioLocacao;
         LocalDate fim_locacao = this.fimLocacao == null ? LocalDate.now() : this.fimLocacao;
+        boolean dia_inicio, dia_devolucao;
 
-        dia_inicio = inicio_locacao.isAfter(inicio) || fim_locacao.isEqual(inicio);
+
+        dia_inicio = inicio_locacao.isAfter(inicio) || inicio_locacao.isEqual(inicio);
         dia_inicio = dia_inicio && (inicio_locacao.isBefore(fim) || inicio_locacao.isEqual(fim));
 
         dia_devolucao = fim_locacao.isAfter(inicio) || fim_locacao.isEqual(inicio);
