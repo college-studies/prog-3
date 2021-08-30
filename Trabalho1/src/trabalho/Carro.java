@@ -7,8 +7,6 @@ public class Carro implements ValorDiaria {
         System.out.println("Interface teste");
     }
 
-
-
     // Definição de Atributos
     private String placa;
     private String modelo;

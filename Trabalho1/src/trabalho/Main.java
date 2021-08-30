@@ -11,6 +11,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        // ----------------- INICIA INSTANCIAS DAS CLASSES PARA LOCACAO, CLIENTES, CARROS E ALUGUEIS ------------------- //
+
         // Nova Instancia de Locacao para criar conta Cliente
         Locacao contaCliente = new Locacao();
 
@@ -23,11 +25,16 @@ public class Main {
         // Cria uma instancia de arraylist para os alugueis
         ArrayList<Aluguel> alugueis = new ArrayList<>();
 
+        // -------------------------------------------------------------------------------------------------------------- //
+
+
         Scanner scanner = new Scanner(System.in);
 
+
+        // ---------------------------- FLUXO DE LEITURA DOS ARQUIVOS TXT ---------------------------------------------- //
         {
             //Fluxo de Leitura do arquivo Clientes
-            Scanner entrada = new Scanner(new FileReader("src/trabalho/clientes.txt")).useDelimiter("\\|");
+            Scanner entrada = new Scanner(new FileReader("src/trabalho/database/clientes.txt")).useDelimiter("\\|");
 
             String tel, end, nome, cpf, cnpj, razao, tipoCliente;
             double divida;
@@ -59,7 +66,7 @@ public class Main {
 
 
             //Fluxo de Leitura do arquivo Carros
-            entrada = new Scanner(new FileReader("src/trabalho/carros.txt")).useDelimiter("\\|");
+            entrada = new Scanner(new FileReader("src/trabalho/database/carros.txt")).useDelimiter("\\|");
 
             String placa, modelo, descricao, observacoes;
             int ano, carro_id;
@@ -84,7 +91,7 @@ public class Main {
             // ---------------------------------------------------------------------------------------------------------//
 
             //Fluxo de Leitura do arquivo Aluguel
-            entrada = new Scanner(new FileReader("src/trabalho/alugueis.txt")).useDelimiter("\\|");
+            entrada = new Scanner(new FileReader("src/trabalho/database/alugueis.txt")).useDelimiter("\\|");
             boolean ativo;
             int aluguel_id, tipoLocacao, diaInicio, mesInicio, anoInicio;
             int diaFinal, mesFinal, anoFinal;
@@ -117,6 +124,8 @@ public class Main {
 
         // Loop inf menu
         int opcao = -1;
+
+        // ---------------------------------------- MENUS DO SISTEMA -------------------------------------------- //
 
         String menuPrincipal = """
                  ---- Menu Principal ---\040
@@ -393,16 +402,16 @@ public class Main {
         }
 
 
-
+        // ---------------------------- FLUXO DE ESCRITA DOS ARQUIVOS TXT ---------------------------------------------- //
         {
             // Escrita no arquivo txt de clientes
-            FileWriter arquivoClientes = new FileWriter("src/trabalho/clientes.txt");
+            FileWriter arquivoClientes = new FileWriter("src/trabalho/database/clientes.txt");
 
             // Escrita no arquivo txt de clientes
-            FileWriter arquivoCarros = new FileWriter("src/trabalho/carros.txt");
+            FileWriter arquivoCarros = new FileWriter("src/trabalho/database/carros.txt");
 
             // Escrita no arquivo txt de clientes
-            FileWriter arquivoAlugueis = new FileWriter("src/trabalho/alugueis.txt");
+            FileWriter arquivoAlugueis = new FileWriter("src/trabalho/database/alugueis.txt");
 
 
             for(Cliente cliente: clientes){
