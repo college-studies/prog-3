@@ -133,4 +133,29 @@ public class Locacao {
         }
     }
 
+    public void mostrarDados(Object out) {
+        String saida = "";
+        if (out instanceof PessoaFisica cliente){
+            saida += "\nNome: " + cliente.getNome() + "\nCPF: " + cliente.getCPF();
+            saida += "\nTelefone: " + cliente.getTelefone() + "\nEndereco: " + cliente.getEndereco();
+            saida += "\nDivida: " + cliente.getDivida();
+        }else if (out instanceof PessoaJuridica cliente){
+            saida += "\nNome Fantasia: " + cliente.getNomeFantasia() + "\nCNPJ: " + cliente.getCNPJ();
+            saida += "\nRazao Social: " + cliente.getRazaoSocial() + "\nTelefone: " + cliente.getTelefone();
+            saida += "\nEndereco: " + cliente.getEndereco() + "\nDivida: " + cliente.getDivida();
+        }else if (out instanceof Carro carro){
+            saida += "\nModelo: " + carro.getModelo() + "\nDescricao: " + carro.getDescricao();
+            saida += "\nAno: " + carro.getAno() + "\nPlaca: " + carro.getPlaca() + "\nKilometragem: " + carro.getQuilometragem();
+            saida += "\nTaxa KM: " + carro.getTaxaPorKm() + "\nTaxa por dia: " + carro.getTaxaDiaria();
+            saida += "\nDisponivel: " + (carro.getSituacao() ? "Sim" : "Nao");
+            saida += "\nObservacao: " + carro.getObservacoes();
+        }else if (out instanceof Aluguel aluguel){
+            saida += "\nData Inicio: " + aluguel.getInicioLocacao();
+            saida += "\nData Final: " + (aluguel.getFimLocacao() == null ? "Aluguel ativo" : aluguel.getFimLocacao());
+            saida += "\nCliente: " + aluguel.getClienteID() + "\nCarro: " + aluguel.getCarroID();
+            saida += "\nTipo de Alocacao: " + (aluguel.getTipoAluguel() == 1 ? "Por dia" : "Por KM");
+            saida += "\nValor: " + aluguel.getValorAluguel();
+        }
+        System.out.println(saida);
+    }
 }
