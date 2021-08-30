@@ -142,25 +142,36 @@ public class Main {
                                 
                 """;
 
+        String menuRelatorios = """
+                 ---- Menu Relatorios ---\040
+                1. Clientes\040
+                2. Veiculos
+                3. Alugueis
+                4. CLientes com Dividas
+                5. Alugados por Periodo
+                0. Sair
+                                
+                Selecione uma opcão:
+                                
+                """;
+
+
         // Menu se mantem ativo em loop ate que o usuario passe o valor 0 para encerrar programa
         while(opcao != 0) {
             System.out.print(menuPrincipal);
 
             opcao = scanner.nextInt();
 
-            switch(opcao) {
-                case 1:
-                {
+            switch (opcao) {
+                case 1 -> {
 
                     // Chamada do metodo para criar um novo cliente
                     Cliente cliente = contaCliente.adicionarCliente(clientes.size());
-                    if(cliente != null){
+                    if (cliente != null) {
                         clientes.add(cliente);
                     }
-                    break;
                 }
-
-                case 2: {
+                case 2 -> {
 
                     String clienteX = "";
                     System.out.println("1.Pessoa Física\n2.Pessoa Jurídica\n\nSeleciona uma opçaão:");
@@ -170,25 +181,25 @@ public class Main {
 
                     if (x == 1) {
                         PessoaFisica pf;
-                        for(Cliente c: clientes) {
+                        for (Cliente c : clientes) {
                             if (c instanceof PessoaFisica) {
                                 pf = (PessoaFisica) c;
-                                System.out.println("ID: " + pf.getClienteID() + " Nome: " + pf.getNome() + " - CPF: " + pf.getCPF() + " - Telefone: " + pf.getTelefone() + " - Endereco: " + pf.getEndereco() + " - Divida: " + pf.getDivida()) ;
+                                System.out.println("ID: " + pf.getClienteID() + " Nome: " + pf.getNome() + " - CPF: " + pf.getCPF() + " - Telefone: " + pf.getTelefone() + " - Endereco: " + pf.getEndereco() + " - Divida: " + pf.getDivida());
                             }
                         }
                     } else if (x == 2) {
                         PessoaJuridica pj;
-                        for (Cliente c: clientes) {
+                        for (Cliente c : clientes) {
                             if (c instanceof PessoaJuridica) {
                                 pj = (PessoaJuridica) c;
-                                System.out.println("ID: " + pj.getClienteID() + " - Nome Fantasia: " + pj.getNomeFantasia()+ " - CNPJ: " + pj.getCNPJ() + " - Telefone: " + pj.getTelefone() + " - Endereco" + pj.getEndereco() + " - Divida: " + pj.getDivida());
+                                System.out.println("ID: " + pj.getClienteID() + " - Nome Fantasia: " + pj.getNomeFantasia() + " - CNPJ: " + pj.getCNPJ() + " - Telefone: " + pj.getTelefone() + " - Endereco" + pj.getEndereco() + " - Divida: " + pj.getDivida());
                             }
                         }
                     }
 
                     int y = -1;
 
-                    while(y < 0 || y >= clientes.size()) {
+                    while (y < 0 || y >= clientes.size()) {
                         System.out.println("\nDigite um ID para escolher o cliente:");
                         y = scanner.nextInt();
                     }
@@ -210,20 +221,18 @@ public class Main {
                         opcao = scanner.nextInt();
 
                         switch (opcao) {
-                            case 1: {
+                            case 1 -> {
                                 ArrayList<Carro> disponiveis = new ArrayList<>();
 
-                                for(Carro carro: carros) {
+                                for (Carro carro : carros) {
                                     if (carro.getSituacao()) {
                                         disponiveis.add(carro);
                                     }
                                 }
 
                                 alugueis.add(contaCliente.cadastrarAluguel(alugueis.size(), cliente, disponiveis));
-                                break;
                             }
-
-                            case 2: {
+                            case 2 -> {
                                 if (cliente.getDivida() > 0) {
                                     contaCliente.pagarDividas(cliente);
                                 } else {
@@ -232,10 +241,8 @@ public class Main {
 
                                 scanner.nextLine();
                                 scanner.nextLine();
-                                break;
                             }
-
-                            case 3: {
+                            case 3 -> {
                                 Aluguel aluguel = null;
                                 Carro carro = null;
                                 boolean flag = false;
@@ -258,36 +265,132 @@ public class Main {
 
                                     double currentKm = scanner.nextDouble();
 
-                                    System.out.println("Implementar devolucao");
+                                    contaCliente.devolucaoAluguel(cliente, carro, aluguel, currentKm);
                                 } else {
                                     System.out.println("Cliente naão tem nenhum carro alugado");
                                 }
 
                                 scanner.nextLine();
-                                break;
                             }
-
-                            case 4: {
-                                System.out.println("Implementar mostrar os dados do cliente");
+                            case 4 -> {
+                                contaCliente.mostrarDados(cliente);
+                                scanner.nextLine();
                             }
                         }
                     }
-                    break;
 
                 }
-
-                case 3: {
+                case 3 -> {
                     Carro carro = contaCliente.cadastrarCarro(carros.size());
-                    if( carro != null) {
+                    if (carro != null) {
                         carros.add(carro);
                     }
                 }
+                case 4 -> {
+                    int i = 0;
+                    int vl;
 
+                    for (Carro carro : carros) {
+                        System.out.println(i++ + ". " + carro.getModelo() + " " + carro.getDescricao());
+                    }
+
+                    System.out.print("\n\nSelecione uma opcao: ");
+
+                    vl = scanner.nextInt();
+
+                    if (vl >= 0 && vl < carros.size()) {
+                        contaCliente.mostrarDados(carros.get(vl));
+                        ;
+                    } else {
+                        System.out.println("Valor invalido");
+                    }
+
+                    scanner.nextLine();
+                }
+                case 5 -> {
+                    opcao = -1;
+                    while (opcao != 0) {
+
+                        System.out.println(menuRelatorios);
+                        opcao = scanner.nextInt();
+                        switch (opcao) {
+                            case 1 -> {
+
+                                for (Cliente c : clientes) {
+                                    contaCliente.mostrarDados(c);
+                                }
+                                scanner.nextLine();
+                            }
+                            case 2 -> {
+
+                                for (Carro c : carros) {
+                                    contaCliente.mostrarDados(c);
+                                }
+                                scanner.nextLine();
+
+                            }
+                            case 3 -> {
+
+                                for (Aluguel a : alugueis) {
+                                    contaCliente.mostrarDados(a);
+                                }
+                                scanner.nextLine();
+
+                            }
+                            case 4 -> {
+
+                                int cont = 0;
+                                for (Cliente c : clientes) {
+                                    if (c.getDivida() > 0) {
+                                        cont++;
+                                        contaCliente.mostrarDados(c);
+                                    }
+                                }
+                                if (cont == 0) {
+                                    System.out.println("Todos os clientes efetuaram pagamento");
+                                }
+                                scanner.nextLine();
+
+                            }
+                            case 5 -> {
+
+                                int dI, mI, aI, dF, mF, aF, cont = 0;
+                                System.out.print("Dia Inicial: ");
+                                dI = scanner.nextInt();
+                                System.out.print("Mes Inicial: ");
+                                mI = scanner.nextInt();
+                                System.out.print("Ano Inicial: ");
+                                aI = scanner.nextInt();
+                                System.out.print("Dia Final: ");
+                                dF = scanner.nextInt();
+                                System.out.print("Mes Final: ");
+                                mF = scanner.nextInt();
+                                System.out.print("Ano Final: ");
+                                aF = scanner.nextInt();
+
+                                LocalDate dataInicial = LocalDate.of(aI, mI, dI);
+                                LocalDate dataFinal = LocalDate.of(aF, mF, dF);
+
+
+                                for (Aluguel a : alugueis) {
+                                    if (a.calculaTempoAluguel(dataInicial, dataFinal)) {
+                                        cont++;
+                                        contaCliente.mostrarDados(a);
+                                    }
+                                }
+                                if (cont == 0) {
+                                    System.out.println("\nNenhum aluguel no periodo");
+                                }
+                                scanner.nextLine();
+
+                            }
+                        }
+                    }
+
+                }
             }
 
         }
-
-
 
 
 
