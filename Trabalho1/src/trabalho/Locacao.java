@@ -158,4 +158,58 @@ public class Locacao {
         }
         System.out.println(saida);
     }
+
+    public void devolucaoAluguel(Cliente cliente, Carro carro, Aluguel aluguel, double quilometragemNova) {
+        Scanner scanner = new Scanner(System.in);
+
+        double total, pagamento;
+
+        LocalDate entrega = LocalDate.now();
+
+        long qtdTempoAlugado = (entrega.toEpochDay() - aluguel.getInicioLocacao().toEpochDay());
+
+        String tipoLocacao = "Locacao Feita por " + (aluguel.getTipoAluguel() == 1 ? " dia" : " Km/rodados");
+
+        String saidaCliente, saidaFinal, sComeco, sFinal;
+
+        String saidaCarro = "Carro: " + carro.getModelo() + " " + carro.getDescricao();
+
+        if (cliente instanceof PessoaFisica pf) {
+            saidaCliente = "Cliente: " + pf.getNome() + " CPF: " + pf.getCPF();
+        }else {
+            PessoaJuridica pj = (PessoaJuridica) cliente;
+            saidaCliente = "Cliente: " + pj.getNomeFantasia() + " CNPJ: " + pj.getCNPJ();
+        }
+
+        System.out.println(saidaCliente);
+        System.out.println("\n" + saidaCarro);
+        System.out.println("Inicio do Aluguel: " + aluguel.getInicioLocacao());
+
+        total = (aluguel.getTipoAluguel() == 1 ? carro.getTaxaDiaria() * (qtdTempoAlugado + 1) : carro.getTaxaPorKm() * (quilometragemNova - carro.getQuilometragem()));
+        System.out.println("Valor total a se pagar: R$" + total);
+        System.out.print("Dinheiro: ");
+        pagamento = scanner.nextDouble();
+
+        sComeco = "\n -- Recibo de Devolucao -- \n";
+        sComeco +=  "O " + saidaCliente + " devolveu o " + saidaCarro;
+        if (pagamento < total){
+            sFinal = "\nDivida do cliente: " + (total - pagamento);
+            cliente.setDivida(total - pagamento);
+        }else{
+            sComeco += " pagamento efeituado !!";
+            sFinal = "\nTroco: " + (pagamento - total);
+        }
+
+        sFinal = sComeco +  "\nData Inicio: " + aluguel.getInicioLocacao();
+        sFinal += "\nData da entrega: " + entrega;
+        sFinal += "\n" + tipoLocacao;
+        sFinal += "\nValor total: " + total + "\nTotal pago: " + pagamento;
+        sFinal += sFinal + "\n";
+
+        System.out.println(sFinal);
+        carro.setQuilometragem(quilometragemNova);
+        carro.setSituacao(true);
+        aluguel.setFimLocacao(entrega);
+        aluguel.setValorAluguel(total);
+    }
 }
