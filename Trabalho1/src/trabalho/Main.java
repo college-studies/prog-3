@@ -3,6 +3,7 @@ package trabalho;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,6 +19,9 @@ public class Main {
 
         // Cria uma instancia de arraylist para os clientes
         ArrayList<Carro> carros = new ArrayList<>();
+
+        // Cria uma instancia de arraylist para os alugueis
+        ArrayList<Aluguel> alugueis = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -77,6 +81,36 @@ public class Main {
             entrada.close();
 
             // ---------------------------------------------------------------------------------------------------------//
+
+            //Fluxo de Leitura do arquivo Aluguel
+            entrada = new Scanner(new FileReader("src/trabalho/alugueis.txt")).useDelimiter("\\|");
+            boolean ativo;
+            int aluguel_id, tipoLocacao, diaInicio, mesInicio, anoInicio;
+            int diaFinal, mesFinal, anoFinal;
+            double valor;
+            LocalDate dIni, dFi;
+
+            while(entrada.hasNext()){
+                ativo = entrada.next().replace("\n", "").equals("1");
+                idCliente = Integer.parseInt(entrada.next().replace("\n", ""));
+                carro_id = Integer.parseInt(entrada.next().replace("\n", ""));
+                aluguel_id = Integer.parseInt(entrada.next().replace("\n", ""));
+                valor = Double.parseDouble(entrada.next().replace("\n", ""));
+                tipoLocacao = Integer.parseInt(entrada.next().replace("\n", ""));
+                diaInicio = Integer.parseInt(entrada.next().replace("\n", ""));
+                mesInicio = Integer.parseInt(entrada.next().replace("\n", ""));
+                anoInicio = Integer.parseInt(entrada.next().replace("\n", ""));
+                dIni = LocalDate.of(anoInicio, mesInicio, diaInicio);
+                dFi = null;
+
+                if(!ativo){
+                    diaFinal = Integer.parseInt(entrada.next().replace("\n", ""));
+                    mesFinal = Integer.parseInt(entrada.next().replace("\n", ""));
+                    anoFinal = Integer.parseInt(entrada.next().replace("\n", ""));
+                    dFi = LocalDate.of(anoFinal, mesFinal, diaFinal);
+                }
+                alugueis.add(new Aluguel(dIni, dFi, idCliente, carro_id,  aluguel_id, valor, tipoLocacao));
+            }
 
         }
 
@@ -185,7 +219,7 @@ public class Main {
                                     }
                                 }
 
-                                // Implementar aluguel
+                                alugueis.add(contaCliente.cadastrarAluguel(alugueis.size(), cliente, disponiveis));
                             }
 
                             case 2: {
@@ -197,6 +231,40 @@ public class Main {
 
                                 scanner.nextLine();
                                 scanner.nextLine();
+                            }
+
+                            case 3: {
+                                Aluguel aluguel = null;
+                                Carro carro = null;
+                                boolean flag = false;
+
+                                for (Aluguel al : alugueis) {
+                                    if (al.getFimLocacao() == null) {
+                                        if (al.getClienteID() == cliente.getClienteID()) {
+                                            flag = true;
+                                            aluguel = al;
+                                            carro = carros.get(al.getCarroID());
+
+                                        }
+                                    }
+                                }
+
+                                if (flag) {
+                                    System.out.println("KM antes" + carro.getQuilometragem());
+                                    System.out.println("KM atual");
+
+                                    double currentKm = scanner.nextDouble();
+
+                                    System.out.println("Implementar devolucao");
+                                } else {
+                                    System.out.println("Cliente naão tem nenhum carro alugado");
+                                }
+
+                                scanner.nextLine();
+                            }
+
+                            case 4: {
+                                System.out.println("Implementar mostrar os dados do cliente");
                             }
                         }
                     }
@@ -224,6 +292,9 @@ public class Main {
 
             // Escrita no arquivo txt de clientes
             FileWriter arquivoCarros = new FileWriter("src/trabalho/carros.txt");
+
+            // Escrita no arquivo txt de clientes
+            FileWriter arquivoAlugueis = new FileWriter("src/trabalho/alugueis.txt");
 
 
             for(Cliente cliente: clientes){
@@ -265,8 +336,36 @@ public class Main {
                 arquivoCarros.write("|" + carro.getAno() + "\n");
             }
 
+            for (Aluguel aluguel: alugueis){
+                if (aluguel.getFimLocacao() == null){
+                    arquivoAlugueis.write("|1|" + aluguel.getClienteID());
+                    arquivoAlugueis.write("|" + aluguel.getCarroID());
+                    arquivoAlugueis.write("|" + aluguel.getAluguelID());
+                    arquivoAlugueis.write("|" + aluguel.getValorAluguel());
+                    arquivoAlugueis.write("|" + aluguel.getTipoAluguel());
+                    arquivoAlugueis.write("|" + aluguel.getInicioLocacao().getDayOfMonth());
+                    arquivoAlugueis.write("|" + aluguel.getFimLocacao().getMonthValue());
+                    arquivoAlugueis.write("|" + aluguel.getInicioLocacao().getYear() + "\n");
+                }else{
+                    arquivoAlugueis.write("|0|" + aluguel.getClienteID());
+                    arquivoAlugueis.write("|" + aluguel.getCarroID());
+                    arquivoAlugueis.write("|" + aluguel.getAluguelID());
+                    arquivoAlugueis.write("|" + aluguel.getValorAluguel());
+                    arquivoAlugueis.write("|" + aluguel.getTipoAluguel());
+                    arquivoAlugueis.write("|" + aluguel.getInicioLocacao().getDayOfMonth());
+                    arquivoAlugueis.write("|" + aluguel.getInicioLocacao().getMonthValue());
+                    arquivoAlugueis.write("|" + aluguel.getInicioLocacao().getYear());
+                    arquivoAlugueis.write("|" + aluguel.getFimLocacao().getDayOfMonth());
+                    arquivoAlugueis.write("|" + aluguel.getFimLocacao().getMonthValue());
+                    arquivoAlugueis.write("|" + aluguel.getFimLocacao().getYear() + "\n");
+                }
+            }
+
             // Finaliza escrita e salva alteracoes apos fim da execucao do programa
-            arquivoClientes.close();
+            arquivoAlugueis.close();
+
+            // Finaliza escrita e salva alteracoes apos fim da execucao do programa
+            arquivoCarros.close();
 
             // Finaliza escrita e salva alteracoes apos fim da execucao do programa
             arquivoCarros.close();
