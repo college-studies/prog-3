@@ -1,16 +1,14 @@
 package trabalho;
 
+import java.io.IOException;
+import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Scanner;
-
 // Tarefas disponiveis no sistema de locação
 public class Locacao {
 
     // construtor default
     public Locacao() {}
-
 
     // Criar um Novo Cliente
     public Cliente adicionarCliente(int client_id) {
@@ -77,7 +75,7 @@ public class Locacao {
     }
 
     // Cadastro Aluguel de um carro para um cliente
-    public Aluguel cadastrarAluguel(int aluguel_id, Cliente cliente, ArrayList<Carro> disponiveis) {
+    public Aluguel cadastrarAluguel(int aluguel_id, Cliente cliente, ArrayList<Carro> disponiveis) throws IOException, InterruptedException {
         Scanner scanner = new Scanner(System.in);
 
         //Pega data atual do pc

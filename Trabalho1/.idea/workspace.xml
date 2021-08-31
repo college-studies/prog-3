@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a8fcb898-b15a-4fd2-9b7b-ffa9e8d77c2f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Aluguel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Aluguel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Locacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Locacao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/database/carros.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/database/carros.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/database/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/database/clientes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trabalho/Aluguel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Aluguel.java" afterDir="false" />
@@ -145,7 +148,9 @@
       <workItem from="1630328526918" duration="5957000" />
       <workItem from="1630338098600" duration="4688000" />
       <workItem from="1630350986954" duration="312000" />
-      <workItem from="1630356339837" duration="7110000" />
+      <workItem from="1630356339837" duration="7881000" />
+      <workItem from="1630375655035" duration="3156000" />
+      <workItem from="1630379462651" duration="1826000" />
     </task>
     <servers />
   </component>
@@ -170,6 +175,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NumberFormatException" package="java.lang" />
           <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="7" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

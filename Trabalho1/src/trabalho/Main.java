@@ -1,15 +1,15 @@
 package trabalho;
 
+import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException , InterruptedException {
 
         // ----------------- INICIA INSTANCIAS DAS CLASSES PARA LOCACAO, CLIENTES, CARROS E ALUGUEIS ------------------- //
 
@@ -48,7 +48,7 @@ public class Main {
                 divida = Double.parseDouble(entrada.next().replace("\n", ""));
 
 
-                if (tipoCliente.equals("1")){
+                if (tipoCliente.equals("0")){
                     nome = entrada.next().replace("\n", "");
                     cpf = entrada.next().replace("\n", "");
                     clientes.add(new PessoaFisica(nome, cpf, tel, end, idCliente, divida));
@@ -99,7 +99,7 @@ public class Main {
             LocalDate dIni, dFi;
 
             while(entrada.hasNext()){
-                ativo = entrada.next().replace("\n", "").equals("2");
+                ativo = entrada.next().replace("\n", "").equals("1");
                 idCliente = Integer.parseInt(entrada.next().replace("\n", ""));
                 carro_id = Integer.parseInt(entrada.next().replace("\n", ""));
                 aluguel_id = Integer.parseInt(entrada.next().replace("\n", ""));
@@ -123,7 +123,7 @@ public class Main {
 
 
         // Loop inf menu
-        int opcao = -1;
+        int opcao[] = {-1,-1};
 
         // ---------------------------------------- MENUS DO SISTEMA -------------------------------------------- //
 
@@ -135,7 +135,7 @@ public class Main {
                 3. Cadastrar Carro
                 4. Mostrar Carros
                 5. Relatórios
-                0. Sair
+                6. Sair
                                 
                 Selecione uma opcão:\040""";
 
@@ -146,7 +146,7 @@ public class Main {
                 2. Quitar Dividas
                 3. Devolver um Carro
                 4. Ver dados do cliente\040
-                0. Voltar
+                5. Voltar
                                 
                 Selecione uma opcão:\040""";
 
@@ -158,27 +158,28 @@ public class Main {
                 3. Alugueis
                 4. CLientes com Dividas
                 5. Alugados por Periodo
-                0. Sair
+                6. Voltar
                                 
                 Selecione uma opcão:\040""";
 
 
         // Menu se mantem ativo em loop ate que o usuario passe o valor 0 para encerrar programa
-        while(opcao != 0) {
+        while(opcao[0] != 6) {
             System.out.print(menuPrincipal);
+            opcao[0] = scanner.nextInt();
 
-            opcao = scanner.nextInt();
-
-            switch (opcao) {
-                case 1 -> {
+            switch (opcao[0]) {
+                case 1:{
 
                     // Chamada do metodo para criar um novo cliente
                     Cliente cliente = contaCliente.adicionarCliente(clientes.size());
                     if (cliente != null) {
                         clientes.add(cliente);
                     }
+                    break;
                 }
-                case 2 -> {
+
+                case 2: {
 
                     String clienteX = "";
                     System.out.println("\n1.Pessoa Física\n2.Pessoa Jurídica\n");
@@ -222,14 +223,16 @@ public class Main {
                     }
 
 
-                    opcao = -1;
-                    while (opcao != 0) {
+                    opcao[1] = -1;
+                    while (opcao[1] != 5) {
                         System.out.println("\n-- Cliente " + clienteX + " selecionado");
                         System.out.print(menuCliente);
-                        opcao = scanner.nextInt();
+                        opcao[1] = scanner.nextInt();
 
-                        switch (opcao) {
-                            case 1 -> {
+                        switch (opcao[1]) {
+                            
+                            case 1:
+                            {
                                 ArrayList<Carro> disponiveis = new ArrayList<>();
 
                                 for (Carro carro : carros) {
@@ -239,8 +242,11 @@ public class Main {
                                 }
 
                                 alugueis.add(contaCliente.cadastrarAluguel(alugueis.size(), cliente, disponiveis));
+                                break;
                             }
-                            case 2 -> {
+                            
+                            case 2: 
+                            {
                                 if (cliente.getDivida() > 0) {
                                     contaCliente.pagarDividas(cliente);
                                 } else {
@@ -249,8 +255,10 @@ public class Main {
 
                                 scanner.nextLine();
                                 scanner.nextLine();
+                                break;
                             }
-                            case 3 -> {
+
+                            case 3:{
                                 Aluguel aluguel = null;
                                 Carro carro = null;
                                 boolean flag = false;
@@ -262,39 +270,47 @@ public class Main {
                                             aluguel = al;
                                             carro = carros.get(al.getCarroID());
                                             break;
-
                                         }
                                     }
                                 }
 
                                 if (flag) {
                                     System.out.println("KM antes" + carro.getQuilometragem());
-                                    System.out.println("KM atual");
+                                    System.out.print("Digite o KM atual: ");
 
-                                    double currentKm = scanner.nextDouble();
+                                    double quilometragemAtual = scanner.nextDouble();
 
-                                    contaCliente.devolucaoAluguel(cliente, carro, aluguel, currentKm);
+                                    contaCliente.devolucaoAluguel(cliente, carro, aluguel, quilometragemAtual);
                                 } else {
-                                    System.out.println("\nCliente naão tem nenhum carro alugado");
+                                    System.out.println("\nCliente não tem nenhum carro alugado");
                                 }
 
                                 scanner.nextLine();
+                                break;
                             }
-                            case 4 -> {
+
+                            case 4:
+                            {
                                 contaCliente.mostrarDados(cliente);
                                 scanner.nextLine();
+                                break;
                             }
                         }
                     }
-
+                    break;
                 }
-                case 3 -> {
+                
+                case 3: 
+                {
                     Carro carro = contaCliente.cadastrarCarro(carros.size());
                     if (carro != null) {
                         carros.add(carro);
                     }
+                    break;
                 }
-                case 4 -> {
+
+                case 4: 
+                {
                     int i = 0;
                     int vl;
 
@@ -308,46 +324,71 @@ public class Main {
 
                     if (vl >= 0 && vl < carros.size()) {
                         contaCliente.mostrarDados(carros.get(vl));
-                        ;
                     } else {
                         System.out.println("Valor invalido");
                     }
-
                     scanner.nextLine();
+                    break;
                 }
-                case 5 -> {
-                    opcao = -1;
-                    while (opcao != 0) {
+
+                case 666:
+                {
+
+                    System.out.printf("Indice: ");
+                    int vl = scanner.nextInt();
+                    if (vl >= 0 && vl < alugueis.size()){
+                        contaCliente.mostrarDados(alugueis.get(vl));
+                    }else{
+                        System.out.println("Indice Invalido");
+                    }
+                    scanner.nextLine();
+                    break;
+                }
+
+                case 5:
+                {
+                    opcao[1] = -1;
+                    while (opcao[1] != 6) {
 
                         System.out.print(menuRelatorios);
-                        opcao = scanner.nextInt();
-                        switch (opcao) {
-                            case 1 -> {
+                        opcao[1] = scanner.nextInt();
+                        switch (opcao[1]) {
+                            
+                            case 1:
+                            {
                                 System.out.println("<----------------------------------Clientes----------------------------->");
                                 for (Cliente c : clientes) {
                                     contaCliente.mostrarDados(c);
                                 }
                                 scanner.nextLine();
                                 System.out.println("<---------------------------------------------------------------------->");
-
+                                break;
                             }
-                            case 2 -> {
+
+                            case 2:
+                            {
                                 System.out.println("<---------------------------------Carros------------------------------------->");
                                 for (Carro c : carros) {
                                     contaCliente.mostrarDados(c);
                                 }
                                 scanner.nextLine();
                                 System.out.println("<---------------------------------------------------------------------->");
+                                break;
                             }
-                            case 3 -> {
+
+                            case 3: 
+                            {
                                 System.out.println("<---------------------------------Alugueis------------------------------------->");
                                 for (Aluguel a : alugueis) {
                                     contaCliente.mostrarDados(a);
                                 }
                                 scanner.nextLine();
                                 System.out.println("<---------------------------------------------------------------------->");
+                                break;
                             }
-                            case 4 -> {
+
+                            case 4:
+                            {
                                 System.out.println("<---------------------------------Devedores------------------------------------->");
                                 int cont = 0;
                                 for (Cliente c : clientes) {
@@ -361,20 +402,11 @@ public class Main {
                                 }
                                 scanner.nextLine();
                                 System.out.println("<---------------------------------------------------------------------->");
+                                break;
                             }
 
-                            case 666 -> {
-                                System.out.print("Indice: ");
-                                int x = scanner.nextInt();
-                                if (x >= 0 && x < alugueis.size()){
-                                    contaCliente.mostrarDados(alugueis.get(x));
-                                }else{
-                                    System.out.println("Indice Invalido");
-                                }
-                                scanner.nextLine();scanner.nextLine();
-                            }
-
-                            case 5 -> {
+                            case 5:
+                            {
 
                                 int dI, mI, aI, dF, mF, aF, cont = 0;
                                 System.out.print("Dia Inicial: ");
@@ -405,11 +437,11 @@ public class Main {
                                 }
                                 scanner.nextLine();
                                 System.out.println("<---------------------------------------------------------------------->");
-
+                                break;
                             }
                         }
                     }
-
+                    break;
                 }
             }
 
@@ -432,7 +464,7 @@ public class Main {
 
                 // Escrita para Pessoa Fisica
                 if (cliente instanceof PessoaFisica pf){
-                    arquivoClientes.write("|1|" + cliente.getClienteID());
+                    arquivoClientes.write("|0|" + cliente.getClienteID());
                     arquivoClientes.write("|" + cliente.getTelefone());
                     arquivoClientes.write("|" + cliente.getEndereco());
                     arquivoClientes.write("|" + cliente.getDivida());
@@ -443,7 +475,7 @@ public class Main {
 
                     // Escrita para Pessoa Juridica
                     PessoaJuridica pj = (PessoaJuridica) cliente;
-                    arquivoClientes.write("|2|" + cliente.getClienteID());
+                    arquivoClientes.write("|1|" + cliente.getClienteID());
                     arquivoClientes.write("|" + cliente.getTelefone());
                     arquivoClientes.write("|" + cliente.getEndereco());
                     arquivoClientes.write("|" + cliente.getDivida());
@@ -456,7 +488,7 @@ public class Main {
 
             for (Carro carro: carros){
                 arquivoCarros.write("|" + carro.getID());
-                arquivoCarros.write("|" + (carro.getSituacao()?1:0));
+                arquivoCarros.write("|" + (carro.getSituacao() ? 1 : 0));
                 arquivoCarros.write("|" + carro.getQuilometragem());
                 arquivoCarros.write("|" + carro.getTaxaPorKm());
                 arquivoCarros.write("|" + carro.getTaxaDiaria());
@@ -469,7 +501,7 @@ public class Main {
 
             for (Aluguel aluguel: alugueis){
                 if (aluguel.getFimLocacao() == null){
-                    arquivoAlugueis.write("|2|" + aluguel.getClienteID());
+                    arquivoAlugueis.write("|1|" + aluguel.getClienteID());
                     arquivoAlugueis.write("|" + aluguel.getCarroID());
                     arquivoAlugueis.write("|" + aluguel.getAluguelID());
                     arquivoAlugueis.write("|" + aluguel.getValorAluguel());
@@ -478,7 +510,7 @@ public class Main {
                     arquivoAlugueis.write("|" + aluguel.getFimLocacao().getMonthValue());
                     arquivoAlugueis.write("|" + aluguel.getInicioLocacao().getYear() + "\n");
                 }else{
-                    arquivoAlugueis.write("|1|" + aluguel.getClienteID());
+                    arquivoAlugueis.write("|0|" + aluguel.getClienteID());
                     arquivoAlugueis.write("|" + aluguel.getCarroID());
                     arquivoAlugueis.write("|" + aluguel.getAluguelID());
                     arquivoAlugueis.write("|" + aluguel.getValorAluguel());

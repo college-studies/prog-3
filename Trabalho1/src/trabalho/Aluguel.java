@@ -14,11 +14,7 @@ public class Aluguel
     private double valorAluguel;
 
     // constructor
-    public Aluguel(
-                    LocalDate inicLoc, LocalDate fimLoc,
-                    int clienteID, int carroID, int aluguelID,
-                    double valorAluguel, int tipoAluguel
-                   )
+    public Aluguel(LocalDate inicLoc, LocalDate fimLoc,int clienteID, int carroID, int aluguelID,double valorAluguel, int tipoAluguel)
     {
         this.inicioLocacao = inicLoc;
         this.fimLocacao = fimLoc;
@@ -30,8 +26,8 @@ public class Aluguel
     }
 
     // setters
-    public void setInicioLocacao(LocalDate inicLoc) { this.inicioLocacao = inicLoc; }
-    public void setFimLocacao(LocalDate fimLoc) { this.fimLocacao = fimLoc; }
+    public void setInicioLocacao(LocalDate d) { this.inicioLocacao = d; }
+    public void setFimLocacao(LocalDate d) { this.fimLocacao = d; }
     public void setClienteID(int clienteID) { this.clienteID = clienteID; }
     public void setCarroID(int carroID) { this.carroID = carroID; }
     public void setAluguelID(int aluguelID) { this.aluguelID = aluguelID; }
@@ -51,18 +47,18 @@ public class Aluguel
     // Auxiliar
     public boolean calculaTempoAluguel(LocalDate inicio, LocalDate fim)
     {
-        LocalDate inicio_locacao = this.inicioLocacao;
-        LocalDate fim_locacao = this.fimLocacao == null ? LocalDate.now() : this.fimLocacao;
-        boolean dia_inicio, dia_devolucao;
+        LocalDate dataI = this.inicioLocacao;
+        LocalDate dataF = this.fimLocacao == null ? LocalDate.now() : this.fimLocacao;
+        boolean dI, dF;
+
+        dI = dataI.isAfter(inicio) || dataI.isEqual(inicio);
+        dI = dI && (dataI.isBefore(fim) || dataI.isEqual(fim));
+
+        dF = dataF.isAfter(inicio) || dataF.isEqual(inicio);
+        dF = dF && (dataF.isBefore(fim) || dataF.isEqual(fim));
 
 
-        dia_inicio = inicio_locacao.isAfter(inicio) || inicio_locacao.isEqual(inicio);
-        dia_inicio = dia_inicio && (inicio_locacao.isBefore(fim) || inicio_locacao.isEqual(fim));
-
-        dia_devolucao = fim_locacao.isAfter(inicio) || fim_locacao.isEqual(inicio);
-        dia_devolucao = dia_devolucao && (fim_locacao.isBefore(fim) || fim_locacao.isEqual(fim));
-
-        return dia_inicio || dia_devolucao;
+        return dI || dF;
     }
 
 }
