@@ -119,6 +119,7 @@ public class Main {
                 }
                 alugueis.add(new Aluguel(dIni, dFi, idCliente, carro_id,  aluguel_id, valor, tipoLocacao));
             }
+            entrada.close();
         }
 
 

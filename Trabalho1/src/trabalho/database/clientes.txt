@@ -1,1 +1,2 @@
-|0|0|66909090909|Rua dos testes qd22 lt4|0.0|Fillipe|045.045.045-45
+|0|0|6690909090|Rua dos Palmares qd76 lt12|0.0|Fillipe Augusto|045.045.045-45
+|1|1|31982342342|Av Faria Lima - SP|0.0|Nubank LTDA|1235345-4523|Nubank

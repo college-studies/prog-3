@@ -49,16 +49,16 @@ public class Aluguel
     {
         LocalDate dataI = this.inicioLocacao;
         LocalDate dataF = this.fimLocacao == null ? LocalDate.now() : this.fimLocacao;
-        boolean dI, dF;
+        boolean dataInicio, dataFinal;
 
-        dI = dataI.isAfter(inicio) || dataI.isEqual(inicio);
-        dI = dI && (dataI.isBefore(fim) || dataI.isEqual(fim));
+        dataInicio = dataI.isAfter(inicio) || dataI.isEqual(inicio);
+        dataInicio = dataInicio && (dataI.isBefore(fim) || dataI.isEqual(fim));
 
-        dF = dataF.isAfter(inicio) || dataF.isEqual(inicio);
-        dF = dF && (dataF.isBefore(fim) || dataF.isEqual(fim));
+        dataFinal = dataF.isAfter(inicio) || dataF.isEqual(inicio);
+        dataFinal = dataFinal && (dataF.isBefore(fim) || dataF.isEqual(fim));
 
 
-        return dI || dF;
+        return dataInicio || dataFinal;
     }
 
 }
