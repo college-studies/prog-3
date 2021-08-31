@@ -3,14 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a8fcb898-b15a-4fd2-9b7b-ffa9e8d77c2f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Aluguel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Aluguel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Locacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Locacao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/database/carros.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/database/carros.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/trabalho/database/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/trabalho/database/clientes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/trabalho/Aluguel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Aluguel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/trabalho/Locacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Locacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trabalho/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trabalho/database/carros.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/database/carros.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trabalho/database/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/trabalho/database/clientes.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +148,7 @@
       <workItem from="1630350986954" duration="312000" />
       <workItem from="1630356339837" duration="7881000" />
       <workItem from="1630375655035" duration="3156000" />
-      <workItem from="1630379462651" duration="1826000" />
+      <workItem from="1630379462651" duration="2500000" />
     </task>
     <servers />
   </component>

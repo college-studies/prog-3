@@ -507,7 +507,7 @@ public class Main {
                     arquivoAlugueis.write("|" + aluguel.getValorAluguel());
                     arquivoAlugueis.write("|" + aluguel.getTipoAluguel());
                     arquivoAlugueis.write("|" + aluguel.getInicioLocacao().getDayOfMonth());
-                    arquivoAlugueis.write("|" + aluguel.getFimLocacao().getMonthValue());
+                    arquivoAlugueis.write("|" + aluguel.getInicioLocacao().getMonthValue());
                     arquivoAlugueis.write("|" + aluguel.getInicioLocacao().getYear() + "\n");
                 }else{
                     arquivoAlugueis.write("|0|" + aluguel.getClienteID());
