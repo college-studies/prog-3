@@ -1,10 +1,21 @@
 package trabalho;
 
+import java.time.LocalDate;
+
 public class Carro implements ValorDiaria {
 
     @Override
-    public void calculaValorDiaria() {
-        System.out.println("Interface teste");
+    public double calculaValorDiaria(double taxaDiaria, int ano) {
+    	int anoLocal = LocalDate.now().getYear();
+    	
+    	if (ano == anoLocal) {
+    		return taxaDiaria * 1.5;
+        }
+        if (ano == anoLocal - 1 || ano == anoLocal - 2) {
+        	return taxaDiaria * 1.2;
+        }
+        
+        return taxaDiaria;
     }
 
     // Definição de Atributos
@@ -40,7 +51,7 @@ public class Carro implements ValorDiaria {
         this.ano = ano;
         this.situacao = situacao;
         this.quilometragem = quilometragem;
-        this.taxaDiaria = taxaDiaria;
+        this.taxaDiaria = calculaValorDiaria(taxaDiaria, ano);
         this.taxaPorKm = taxaPorKm;
 
     }

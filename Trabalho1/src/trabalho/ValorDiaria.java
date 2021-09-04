@@ -1,5 +1,5 @@
 package trabalho;
 
 public interface ValorDiaria {
-    void calculaValorDiaria();
+    double calculaValorDiaria(double taxaDiaria, int ano);
 }

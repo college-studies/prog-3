@@ -1,6 +1,7 @@
 package trabalho;
 
 import java.io.IOException;
+
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class Locacao {
         System.out.print("Taxa Diaria: "); taxaDiaria = scanner.nextDouble();
         scanner.nextLine();
         System.out.print("Observação: "); observacoes = scanner.nextLine();
-
+        
         return new Carro(placa, modelo, descricao, observacoes, carro_id, ano, situacao, quilometragem, taxaDiaria, taxaPorKm);
     }
 
