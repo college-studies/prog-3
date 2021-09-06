@@ -117,32 +117,31 @@ public class Locacao {
     // Pagamento de dividas
     public void pagarDividas(Cliente cliente) {
         Scanner scanner = new Scanner(System.in);
-
-        String entrada, saida = "";
+        String saida = "";
+        double valorPago;
 
         // Recupera a divida do cliente
         System.out.println("Divida de R$ " + cliente.getDivida());
+        
+        System.out.print("Informe o valor pago: ");
+        
+        valorPago = scanner.nextDouble();
 
-        entrada = scanner.nextLine();
+        // Setta a divida como quitada
+        cliente.setDivida(cliente.getDivida() - valorPago);
 
-        if (entrada.toLowerCase().equals("s")) {
-            // Setta a divida como quitada
-            cliente.setDivida(0);
+        System.out.println("\n -- Divida Atualizada -- ");
 
-            System.out.println("\n -- Divida Quitada -- ");
-
-            // Retorna o status da divida de acordo com o tipo do cliente
-            if (cliente instanceof PessoaFisica pf) {
-                saida += pf.getNome() +" "+ pf.getCPF() + " Divida quitada - Valor R$" + pf.getDivida();
-
-            } else {
-                PessoaJuridica pj = (PessoaJuridica) cliente;
-                saida += pj.getNomeFantasia() +" "+ pj.getCNPJ() + " Divida quitada - Valor R$" + pj.getDivida();
-            }
-
-            System.out.println(saida);
-            System.out.println(LocalDate.now());
+        // Retorna o status da divida de acordo com o tipo do cliente
+        if (cliente instanceof PessoaFisica pf) {
+            saida += pf.getNome() +" "+ pf.getCPF() + " Divida atualizada - Valor R$" + pf.getDivida();
+        } else {
+            PessoaJuridica pj = (PessoaJuridica) cliente;
+            saida += pj.getNomeFantasia() +" "+ pj.getCNPJ() + " Divida atualizada - Valor R$" + pj.getDivida();
         }
+
+        System.out.println(saida);
+        System.out.println(LocalDate.now());
     }
 
     // Devolve o veiculo alugado

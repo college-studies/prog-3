@@ -154,12 +154,9 @@ public class Main {
         String menuRelatorios = """
                  
                  ---- Menu Relatorios ---\040
-                1. Clientes\040
-                2. Veiculos
-                3. Alugueis
-                4. CLientes com Dividas
-                5. Alugados por Periodo
-                6. Voltar
+                1. CLientes com Dividas
+                2. Faturamento por periodo
+                3. Voltar
                                 
                 Selecione uma opcão:\040""";
 
@@ -349,46 +346,12 @@ public class Main {
                 case 5:
                 {
                     opcao[1] = -1;
-                    while (opcao[1] != 6) {
+                    while (opcao[1] != 3) {
 
                         System.out.print(menuRelatorios);
                         opcao[1] = scanner.nextInt();
                         switch (opcao[1]) {
-                            
                             case 1:
-                            {
-                                System.out.println("<----------------------------------Clientes----------------------------->");
-                                for (Cliente c : clientes) {
-                                    contaCliente.mostrarDados(c);
-                                }
-                                scanner.nextLine();
-                                System.out.println("<---------------------------------------------------------------------->");
-                                break;
-                            }
-
-                            case 2:
-                            {
-                                System.out.println("<---------------------------------Carros------------------------------------->");
-                                for (Carro c : carros) {
-                                    contaCliente.mostrarDados(c);
-                                }
-                                scanner.nextLine();
-                                System.out.println("<---------------------------------------------------------------------->");
-                                break;
-                            }
-
-                            case 3: 
-                            {
-                                System.out.println("<---------------------------------Alugueis------------------------------------->");
-                                for (Aluguel a : alugueis) {
-                                    contaCliente.mostrarDados(a);
-                                }
-                                scanner.nextLine();
-                                System.out.println("<---------------------------------------------------------------------->");
-                                break;
-                            }
-
-                            case 4:
                             {
                                 System.out.println("<---------------------------------Devedores------------------------------------->");
                                 int cont = 0;
@@ -401,15 +364,12 @@ public class Main {
                                 if (cont == 0) {
                                     System.out.println("Todos os clientes efetuaram pagamento");
                                 }
-                                scanner.nextLine();
                                 System.out.println("<---------------------------------------------------------------------->");
                                 break;
                             }
-
-                            case 5:
+                            case 2:
                             {
-
-                                int dI, mI, aI, dF, mF, aF, cont = 0;
+                            	int dI, mI, aI, dF, mF, aF, total = 0;
                                 System.out.print("Dia Inicial: ");
                                 dI = scanner.nextInt();
                                 System.out.print("Mes Inicial: ");
@@ -426,17 +386,16 @@ public class Main {
                                 LocalDate dataInicial = LocalDate.of(aI, mI, dI);
                                 LocalDate dataFinal = LocalDate.of(aF, mF, dF);
 
-                                System.out.println("<---------------------------------Alugueis por Periodo------------------------------------->");
+                                System.out.println("<---------------------------------Faturamento por Periodo------------------------------------->");
                                 for (Aluguel a : alugueis) {
                                     if (a.calculaTempoAluguel(dataInicial, dataFinal)) {
-                                        cont++;
-                                        contaCliente.mostrarDados(a);
+                                    	total += a.getValorAluguel();
                                     }
                                 }
-                                if (cont == 0) {
-                                    System.out.println("\nNenhum aluguel no periodo");
+                                if (total == 0) {
+                                    System.out.println("\nNenhum faturamento no periodo");
                                 }
-                                scanner.nextLine();
+                                System.out.println("Valor do faturamento total no período: "+ total);
                                 System.out.println("<---------------------------------------------------------------------->");
                                 break;
                             }

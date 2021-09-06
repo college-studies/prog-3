@@ -1,2 +1,2 @@
-|0|1|12321.0|6.9|60.48|ASM123T|Camaro|Camaro Amarelo, motor v8 turbo 2.8 de 240 cavalos|Carro em perfeito estado|2020
-|1|0|45000.0|5.8|32.0|ASM12V55|Mustang GT|Ford Mustang vermelho, extremamente estiloso e classico, motor 2.4 v6|Carro reliquia, com algumas marcas de historia, mas em otimo estado|2010
+|0|1|0.0|50.0|750.0|ABC1234|Ferrari|Vermelha|Modelo novo|2021
+|1|1|3000.0|100.0|400.0|QWE5678|Mustang|Amarelo|Semi novo|2015
