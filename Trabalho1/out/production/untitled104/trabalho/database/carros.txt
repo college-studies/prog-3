@@ -1,2 +1,2 @@
-|0|1|0.0|50.0|750.0|ABC1234|Ferrari|Vermelha|Modelo novo|2021
+|0|1|100.0|50.0|1125.0|ABC1234|Ferrari|Vermelha|Modelo novo|2021
 |1|1|3000.0|100.0|400.0|QWE5678|Mustang|Amarelo|Semi novo|2015
